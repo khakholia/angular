@@ -1,4 +1,4 @@
-{"movies":[
+{"data":[
     {"id":1, "date":"2022-01-01", "type":"Sale","particulars":"Goods Sold", "amount":"1000"},
     {"id":2, "date":"2022-01-02", "type":"Sale","particulars":"Goods Sold", "amount":"1988"},
     {"id":3, "date":"2022-01-03", "type":"Purshase","particulars":"Goods Purchased", "amount":"3000"},
