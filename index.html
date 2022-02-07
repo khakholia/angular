@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="transaction.js"></script>
+</head>
+
+<body ng-controller="transactionCtrl">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="navbar-brand text-light" href="#">Transactions</a>
+    </nav>
+
+    <div class="m-2">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <label for="rowsToBeDisplayed">Display:</label>
+                <input type="number" class="form-control rounded w-50" step="1" min="0" max="10" ng-model="rowlimit"
+                    placeholder="Number of rows to be displayed..." />
+            </div>
+            <div class="col-4">
+                <label for="searchtr">Search Transaction:</label>
+                <input type="text" class="form-control rounded w-75" ng-model="searchtr"
+                    placeholder="Search transaction by id, date, type" placeholder="Search" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <table cellpadding="2" cellspacing="2" border="2" class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="search" class="form-control rounded" placeholder="Search id"
+                                aria-label="Search" aria-describedby="search-addon" ng-model="search.id" />
+                        </th>
+                        <th>
+                            <input type="search" class="form-control rounded" placeholder="Search date"
+                                aria-label="Search" aria-describedby="search-addon" ng-model="search.date" />
+                        </th>
+                        <th>
+                            <input type="search" class="form-control rounded" placeholder="Search type"
+                                aria-label="Search" aria-describedby="search-addon" ng-model="search.type" />
+                        </th>
+                        <th>
+                            <input type="search" class="form-control rounded" placeholder="Search particulars"
+                                aria-label="Search" aria-describedby="search-addon" ng-model="search.particulars" />
+                        </th>
+                        <th>
+                            <input type="search" class="form-control rounded" placeholder="Search amount"
+                                aria-label="Search" aria-describedby="search-addon" ng-model="search.amount" />
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th scope="col" ng-click="orderByMe('id')">ID</th>
+                        <th scope="col" ng-click="orderByMe('date')">Date</th>
+                        <th scope="col" ng-click="orderByMe('type')">Type</th>
+                        <th scope="col" ng-click="orderByMe('particulars')">Particulars</th>
+                        <th scope="col" ng-click="orderByMe('amount')">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        ng-repeat="x in myData | limitTo:rowlimit |  filter:searchtr | orderBy:myOrderBy | filter:search">
+                        <td scope="row">{{x.id}}</td>
+                        <td>{{x.date | date}}</td>
+                        <td>{{x.type}}</td>
+                        <td>{{x.particulars | uppercase }}</td>
+                        <td>{{x.amount | currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
