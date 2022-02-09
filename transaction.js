@@ -6,10 +6,6 @@ app.controller('transactionCtrl',function($scope, $http)
     {
         $scope.myData = response.data.data;
         $scope.rowlimit = response.data.length();
-        // $scope.orderByMe = function(x) 
-        // {
-        //     $scope.myOrderBy = x;
-        // }
     });
 
     $scope.orderByMe = function(x) {
